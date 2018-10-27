@@ -1,0 +1,19 @@
+{
+  "name": "ethaddressbook",
+  "version": "1.0.0",
+  "description": "Personal reference for commonly used addresses encrypted and stored on decentralized solutions (swarm, ipfs) and accessed using web3.js",
+  "main": "dist/lib.ethaddressbook-cjs.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rollup": "rollup -c && cp dist/lib.ethaddressbook.js example/static/"
+  },
+  "author": "syuan100",
+  "license": "MIT",
+  "devDependencies": {
+    "rollup": "^0.66.6",
+    "rollup-plugin-terser": "^3.0.0"
+  }
+}
