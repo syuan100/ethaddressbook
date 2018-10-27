@@ -21,7 +21,7 @@ const LOCAL_SWARM_URL = "http://localhost:8500/"
 const PUBLIC_SWARM_URL = "https://swarm-gateways.net/"
 
 // TODO: Provide error response message if Swarm gateway cannot be reached
-var CURRENT_GATEWAY_URL = LOCAL_SWARM_URL
+var CURRENT_GATEWAY_URL = PUBLIC_SWARM_URL
 
 eab.getBook = function(swarmHash, password) {
   return fetch(CURRENT_GATEWAY_URL + "bzz:/" + swarmHash, { method: "GET" }).then( response => {
