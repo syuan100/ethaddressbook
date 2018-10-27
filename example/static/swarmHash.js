@@ -67,7 +67,7 @@ function init() {
     let currentHash = document.getElementById("hash-for-address").innerHTML
     let password = document.querySelector("#decrypt-password").value
     let addressBook = await ethAddressBook.getBook(currentHash, password)
-    document.querySelector("#encrypted-text-box").value = addressBook
+    document.querySelector("#stored-text-box").value = addressBook
   })
 
 }

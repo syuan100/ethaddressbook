@@ -15,7 +15,7 @@ export default () => (
     </div>
 
     <form id="encrypted-text">
-      Encrypted Text:<br /><textarea name="message" rows="10" cols="30" id="encrypted-text-box"></textarea><br />
+      Stored Text:<br /><textarea name="message" rows="10" cols="30" id="stored-text-box"></textarea><br />
       Enter Password:<br /><input name="message" type="password" id="decrypt-password" />
     </form>
 
