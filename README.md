@@ -15,7 +15,7 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 --WORK IN PROGRESS--
 
 ## Public Methods
-`setNetwork(networkId)`
+`ethAddressBook.setNetwork(networkId)`
 - Instantiates the correct ethereum smart contract depending on the network specified.
 
 > *Parameters:*
@@ -26,7 +26,7 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 
 ***
 
-`getBook(swarmHash, password)`
+`ethAddressBook.getBook(swarmHash, password)`
 - Retrieves the stored `addressBook` object from Swarm and optionally decrypts it if it is encrypted.
 
 > *Parameters:*
@@ -39,7 +39,7 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 
 ***
 
-`storeBook(address, addressBook, password)`
+`ethAddressBook.storeBook(address, addressBook, password)`
 - Encrypts and stores the `addressBook` object in Swarm. (`addressBook` must match parameters to pass the `verifyAddressBook` check).
 
 > *Parameters:*
@@ -52,7 +52,7 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 
 ***
 
-`getHash(address)`
+`ethAddressBook.getHash(address)`
 - Retrieves the Swarm hash related to the ethereum address passed into the function
 
 > *Parameters:*
@@ -61,6 +61,12 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 > *Returns:*
 > - `Promise` `reject(error)` Returns an error statement
 > - OR `Promise` `resolve(hashString)` Returns a string representation of the 32-byte Swarm file hash
+
+***
+
+## Private Methods
+
+
 
 ## Contributing
 Thank you for contribting to the project! Please make changes on your own fork of this repo and make a pull request when you wish to merge your changes.
