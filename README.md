@@ -1,7 +1,7 @@
 # ethaddressbook
 Personal reference for commonly used addresses encrypted and stored on decentralized solutions (swarm, ipfs... soon) and accessed using web3.js
 
-## :warning: Warning: Work In Progress
+#### :warning: Warning: Work In Progress
 This is largely a project born out of personal curiosity and may or may not be maintained. There are no guarantees that the data that you store on the blockchain will persist. Currently, the only contracts deployed are on the Ropsten and Rinkeby testnets. Please utilize this project with caution.
 
 If you would like to contribute, please [click here](#contributing) to see instructions for setup.
@@ -49,3 +49,16 @@ I would recommend that you have at least 0.1 ETH in your MetaMask wallet to make
 
 If you are confused by anything that was just said, I would highly recommend you read a primer on Ethereum, smart contracts, and gas. [This is a pretty good one.](https://blockgeeks.com/guides/ethereum-gas-step-by-step-guide/)
 
+### Testing Procedure (version 0)
+1. Make sure you switch your wallet to one of the testnets (Ropsten in this case).
+<img src="https://imgur.com/PPSfUk5.jpg" height="25%" width="25%" />
+
+2. In the textbox labeled "Text to store" enter a JSON formatted object like so (optionally you can add as many entries into the `addresses` array as you wish as long as they contain the `"address"` key-pair):
+<pre>{
+  "addresses" : [{
+    "label" : "This is a label",
+    "address" : "0x557ea34F90467d41444A83677B5bc2AD84551f69"
+  }]
+}</pre>
+
+3. (Optional) Enter a password to encrypt your addressbook before you store it on swarm.
