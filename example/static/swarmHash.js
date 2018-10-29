@@ -16,9 +16,11 @@ window.addEventListener('load', function() {
           break
         case "3":
           console.log('On the ropsten test network.')
+          ethAddressBook.setNetwork(netId)
           break
         case "4":
           console.log('On the Rinkeby test network.')
+          ethAddressBook.setNetwork(netId)
           break
         case "42":
           console.log('On the Kovan test network.')
@@ -26,9 +28,8 @@ window.addEventListener('load', function() {
         default:
           console.log('On an unknown network.')
       }
+      init()
     })
-
-    init()
 
   } else {
     console.log('No web3? You should consider trying MetaMask!')
