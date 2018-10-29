@@ -15,7 +15,7 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 --WORK IN PROGRESS--
 
 ## Public Methods
-`ethAddressBook.setNetwork(networkId)`
+#### `ethAddressBook.setNetwork(networkId)`
 - Instantiates the correct ethereum smart contract depending on the network specified.
 
 > *Parameters:*
@@ -26,11 +26,11 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 
 ***
 
-`ethAddressBook.getBook(swarmHash, password)`
+#### `ethAddressBook.getBook(swarmHash, password)`
 - Retrieves the stored `addressBook` object from Swarm and optionally decrypts it if it is encrypted.
 
 > *Parameters:*
-> - `swarmHash` `string` String representation of a 32-byte hash referring to the stored `addressBook` object
+> - `swarmHash` `string` String representation of a 64-byte hash referring to the stored `addressBook` object
 > - `password` `string` (Optional) If the `addressBook` is encrypted
 > 
 > *Returns:*
@@ -39,7 +39,7 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 
 ***
 
-`ethAddressBook.storeBook(address, addressBook, password)`
+#### `ethAddressBook.storeBook(address, addressBook, password)`
 - Encrypts and stores the `addressBook` object in Swarm. (`addressBook` must match parameters to pass the `verifyAddressBook` check).
 
 > *Parameters:*
@@ -52,7 +52,7 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 
 ***
 
-`ethAddressBook.getHash(address)`
+#### `ethAddressBook.getHash(address)`
 - Retrieves the Swarm hash related to the ethereum address passed into the function
 
 > *Parameters:*
@@ -60,12 +60,35 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 > 
 > *Returns:*
 > - `Promise` `reject(error)` Returns an error statement
-> - OR `Promise` `resolve(hashString)` Returns a string representation of the 32-byte Swarm file hash
+> - OR `Promise` `resolve(hashString)` Returns a string representation of the 64-byte Swarm file hash
 
 ***
 
-## Private Methods
+## Private Methods (Reference only)
 
+#### `storeHash(address, hashPartA, hashPartB)`
+- Function that interacts with the smart contract code to actually map an ethereum address to the Swarm hash and store it in the blockchain
+
+> *Parameters:*
+> - `address` `string` Valid Ethereum address that you wish to map to a Swarm hash
+> - `hashPartA` `string` 32-byte string referring to the first half of the 64-byte Swarm hash
+> - `hashPartB` `string` 32-byte string referring to the second half of the 64-byte Swarm hash
+> 
+> *Returns:*
+> - `Promise` `reject(error)` Returns an error statement
+> - OR `Promise` `resolve(result)` Returns a success statement
+
+***
+
+#### `encryptAddressBook(addressBook, password)`
+- Helper function to encrypt an `addressBook` object using the WebCrypto API
+
+> *Parameters:*
+> 
+> *Returns:*
+> 
+
+***
 
 
 ## Contributing
