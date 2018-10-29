@@ -4,7 +4,7 @@ export default [{
   input: 'src/ethaddressbook.js',
   output: [
     {
-      file: 'dist/lib.ethaddressbook-cjs.js',
+      file: 'dist/ethaddressbook-cjs.min.js',
       format: 'cjs'
     }
   ],
@@ -13,10 +13,27 @@ export default [{
   input: 'src/ethaddressbook.js',
   output: [
     {
-      file: 'dist/lib.ethaddressbook.js',
+      file: 'dist/ethaddressbook.min.js',
       format: 'iife',
       name: 'ethAddressBook'
     }
   ],
   plugins: [terser()]
+},{
+  input: 'src/ethaddressbook.js',
+  output: [
+    {
+      file: 'dist/ethaddressbook-cjs.js',
+      format: 'cjs'
+    }
+  ]  
+},{
+  input: 'src/ethaddressbook.js',
+  output: [
+    {
+      file: 'dist/ethaddressbook.js',
+      format: 'iife',
+      name: 'ethAddressBook'
+    }
+  ]
 }];

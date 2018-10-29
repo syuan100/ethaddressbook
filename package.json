@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "rollup": "rollup -c && cp dist/lib.ethaddressbook.js example/static/"
+    "rollup": "rollup -c && cp dist/ethaddressbook.min.js example/static/"
   },
   "author": "syuan100",
   "license": "MIT",
