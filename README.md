@@ -16,8 +16,7 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 
 ## Public Methods
 `setNetwork(networkId)`
-
-Instantiates the correct ethereum smart contract depending on the network specified.
+- Instantiates the correct ethereum smart contract depending on the network specified.
 
 > *Parameters:*
 > - `networkId` `string` (Refer to this [link](https://github.com/ethereumbook/ethereumbook/issues/110) to see which id's refer to which networks)
@@ -28,8 +27,7 @@ Instantiates the correct ethereum smart contract depending on the network specif
 ***
 
 `getBook(swarmHash, password)`
-
-Retrieves the stored `addressBook` object from Swarm and optionally decrypts it if it is encrypted.
+- Retrieves the stored `addressBook` object from Swarm and optionally decrypts it if it is encrypted.
 
 > *Parameters:*
 > - `swarmHash` `string` String representation of a 32-byte hash referring to the stored `addressBook` object
@@ -42,8 +40,7 @@ Retrieves the stored `addressBook` object from Swarm and optionally decrypts it 
 ***
 
 `storeBook(address, addressBook, password)`
-
-Encrypts and stores the `addressBook` object in Swarm. (`addressBook` must match parameters to pass the `verifyAddressBook` check).
+- Encrypts and stores the `addressBook` object in Swarm. (`addressBook` must match parameters to pass the `verifyAddressBook` check).
 
 > *Parameters:*
 > - `address` `string` Valid Ethereum address to correlate the addresbook to
@@ -56,8 +53,7 @@ Encrypts and stores the `addressBook` object in Swarm. (`addressBook` must match
 ***
 
 `getHash(address)`
-
-Retrieves the Swarm hash related to the ethereum address passed into the function
+- Retrieves the Swarm hash related to the ethereum address passed into the function
 
 > *Parameters:*
 > - `address` `string` Valid Ethereum address that you wish to find the corresponding Swarm hash to
