@@ -57,8 +57,15 @@ If you are confused by anything that was just said, I would highly recommend you
 <pre>{
   "addresses" : [{
     "label" : "This is a label",
-    "address" : "0x557ea34F90467d41444A83677B5bc2AD84551f69"
+    "address" : "0x1f3fAf73952F22444B2643A9280F9cA423B41681"
   }]
 }</pre>
 
 3. (Optional) Enter a password to encrypt your addressbook before you store it on swarm.
+
+4. Click the "Encrypt Book" button to store your book. You should see a MetaMask confirmation window pop-up. Feel free to adjust the gas values to make the transaction go faster. FYI: Ropsten is generally has a faster time to confirmation.
+<img src="https://i.imgur.com/N0W3m4n.png" height="50%" width="50%" />
+
+5. After confirming the transaction, wait a few moments until your transaction is confirmed. Then you can check that the addressbook was stored properly. Refresh the page manually (TODO: Auto-refresh example after transaction confirmation) and make sure you see something under "Current Hash for Address"
+
+6. Type in your password in the lower password field and click "Get Book" and you should see the text you stored from step 4. (It may take a while for Swarm to respond if you are using the public gateway).
