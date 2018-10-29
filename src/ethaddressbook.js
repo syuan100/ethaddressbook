@@ -12,8 +12,8 @@ const swarmHashAddressRopstenVYPER = "0xe330529D363cBa6f1C1b7A81287026Fe93741736
 const swarmHashAddressRinkebySOLIDITY = "0x95275693aF9E7b20F8Dbb7466Bb1652510d93359"
 
 var CURRENT_SWARM_HASH_INTERFACE = swarmHashJsonInterfaceVYPER
-var CURRENT_SWARM_HASH_ADDRESS = swarmHashAddressRinkebySOLIDITY
-const swarmHashContractInstance = web3.eth.contract(CURRENT_SWARM_HASH_INTERFACE).at(CURRENT_SWARM_HASH_ADDRESS)
+var CURRENT_SWARM_HASH_ADDRESS
+var swarmHashContractInstance
 
 // TODO:
 //  - Allow user to choose local or hosted swarm node
@@ -22,6 +22,15 @@ const PUBLIC_SWARM_URL = "https://swarm-gateways.net/"
 
 // TODO: Provide error response message if Swarm gateway cannot be reached
 var CURRENT_GATEWAY_URL = PUBLIC_SWARM_URL
+
+eab.setNetwork = async function(networkId) {
+  if (networkId === "3") {
+    CURRENT_SWARM_HASH_ADDRESS = swarmHashAddressRopstenVYPER
+  } else if (networkId === "4") {
+    CURRENT_SWARM_HASH_ADDRESS = swarmHashAddressRinkebySOLIDITY
+  }
+  swarmHashContractInstance = web3.eth.contract(CURRENT_SWARM_HASH_INTERFACE).at(CURRENT_SWARM_HASH_ADDRESS)
+}
 
 eab.getBook = function(swarmHash, password) {
   return fetch(CURRENT_GATEWAY_URL + "bzz:/" + swarmHash, { method: "GET" }).then( response => {
