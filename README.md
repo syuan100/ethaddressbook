@@ -6,10 +6,70 @@ This is largely a project born out of personal curiosity and may or may not be m
 
 If you would like to contribute, please [click here](#contributing) to see instructions for setup.
 
+## Static `<script>` Tag Usage
+Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of your page. You will also need `web3.js` for this to work. [Get the file here](https://github.com/ethereum/web3.js/releases/tag/v0.20.6) or use the one included in the `example` folder.
+<pre><script src="web3.min.js"></script>
+<script src="ethaddressbook.min.js"></script></pre>
+
+## Node.js usage
+--WORK IN PROGRESS--
+
+## Public Methods
+`setNetwork(networkId)`
+
+Instantiates the correct ethereum smart contract depending on the network specified.
+
+> *Parameters:*
+> - `networkId` `string` (Refer to this [link](https://github.com/ethereumbook/ethereumbook/issues/110) to see which id's refer to which networks)
+> 
+> *Returns:*
+> - None
+
+***
+
+`getBook(swarmHash, password)`
+
+Retrieves the stored `addressBook` object from Swarm and optionally decrypts it if it is encrypted.
+
+> *Parameters:*
+> - `swarmHash` `string` String representation of a 32-byte hash referring to the stored `addressBook` object
+> - `password` `string` (Optional) If the `addressBook` is encrypted
+> 
+> *Returns:*
+> - `decryptAddressBook()` Returns function call
+> - OR `addressBook` `JSON` Returns an Object
+
+***
+
+`storeBook(address, addressBook, password)`
+
+Encrypts and stores the `addressBook` object in Swarm. (`addressBook` must match parameters to pass the `verifyAddressBook` check).
+
+> *Parameters:*
+> - `address` `string` Valid Ethereum address to correlate the addresbook to
+> - `addressBook` `string` JSON Object that is stringified and passes the `verifyAddressBook` check
+> - `password` `string` (Optional) Included if addressbook is to be encrypted
+> 
+> *Returns:*
+> - `storeHash()` Returns a function call
+
+***
+
+`getHash(address)`
+
+Retrieves the Swarm hash related to the ethereum address passed into the function
+
+> *Parameters:*
+> - `address` `string` Valid Ethereum address that you wish to find the corresponding Swarm hash to
+> 
+> *Returns:*
+> - `Promise` `reject(error)` Returns an error statement
+> - OR `Promise` `resolve(hashString)` Returns a string representation of the 32-byte Swarm file hash
+
 ## Contributing
 Thank you for contribting to the project! Please make changes on your own fork of this repo and make a pull request when you wish to merge your changes.
 
-### lib.ethaddressbook.js
+### ethaddressbook.js
 We're using [Rollup.js](https://rollupjs.org) to build our files and minify them. If you are making changes to the library please only make changes to files in the `src` folder.
 
 First, make sure you have [node and npm installed](https://nodejs.org/en/download/). Then install the dependencies:
@@ -23,7 +83,7 @@ You should see a success message saying that files were created in the `dist` fo
 #### TODOs:
 - [ ] Implement unit testing and code coverage
 - [ ] Implement ESLint
-- [ ] Test if Commonjs output file (lib.ethaddressbook-cjs.js) actually works as a node import
+- [ ] Test if Commonjs output file (ethaddressbook-cjs.js) actually works as a node import
 
 ### Setting Up The Testing Environment
 To test your changes, you can use the rudimentary demo setup in the `example` directory. To get started:
@@ -69,3 +129,8 @@ If you are confused by anything that was just said, I would highly recommend you
 5. After confirming the transaction, wait a few moments until your transaction is confirmed. Then you can check that the addressbook was stored properly. Refresh the page manually (TODO: Auto-refresh example after transaction confirmation) and make sure you see something under "Current Hash for Address"
 
 6. Type in your password in the lower password field and click "Get Book" and you should see the text you stored from step 4. (It may take a while for Swarm to respond if you are using the public gateway).
+
+#### TODOs:
+- [ ] UI Theme
+- [ ] Abstract JSON object and show UI for labels + addresses
+- [ ] Setting max storage elements
