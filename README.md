@@ -12,7 +12,29 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 <script src="ethaddressbook.min.js"></script></pre>
 
 ## Node.js usage
---WORK IN PROGRESS--
+(WIP)
+
+## The `addressBook` Data Structure
+The `addressBook` JSON formatted object is the central data structre that this library uses. All address books must be formatted properly in order to be read coherently in and out of storage. An example:
+<pre>{
+  "addresses" : [{
+    "label" : "This is a label",
+    "address" : "0x1f3fAf73952F22444B2643A9280F9cA423B41681"
+  },
+  ...
+  ]
+}</pre>
+
+All `addressBook` objects must follow this structure:
+- Parent key named `addresses` with an `Array` as the value
+- The `Array` must contain a series of objects with a `label` key-value pair and an `address` key-value pair
+- The address must be a properly formatted Ethereum address
+
+TODO:
+- [ ] Max # of addresses
+- [ ] Max label length
+
+The `verifyAddressBook()` function below is used to verify any data trying to pass ass an address book.
 
 ## Public Methods
 #### `ethAddressBook.setNetwork(networkId)`
@@ -40,7 +62,7 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 
 > *Parameters:*
 > - `address` `string` Valid Ethereum address to correlate the addresbook to
-> - `addressBook` `string` JSON Object that is stringified and passes the `verifyAddressBook` check
+> - `addressBook` `string` Stringified JSON Object representing the addressbook that passes the `verifyAddressBook` check
 > - `password` `string` (Optional) Included if addressbook is to be encrypted
 > 
 > *Returns:*
@@ -74,9 +96,33 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 - Helper function to encrypt an `addressBook` object using the WebCrypto API
 
 > *Parameters:*
+> - `addressBook` `string` Stringified JSON Object representing the addressbook that passes the `verifyAddressBook` check
+> - `password` `string` (Optional) Included if addressbook is to be encrypted
 > 
 > *Returns:*
+> - `transformedAddressBook` JSON Object containing the result of the encryption: a WebCrypto initialization vector and the encrypted object
+
+#### `decryptAddressBook(rawAddressBook, password)`
+- Helper function to decrypt an encrypted `addressBook` object using the WebCrypto API
+
+> *Parameters:*
+> - `rawAddressBook` `string` Stringified JSON Object representing the encrypted `addressBook` object
+> - `password` `string` The password that was used to encrypt the `addressBook` object
 > 
+> *Returns:*
+> - `decodedAddressBook` JSON Object representing the addressbook that passes the `verifyAddressBook` check
+> - OR `addressBook` If no password was specified assume the rawAddressBook is not an encrypted object, so return the addressBook reference within it
+
+
+#### `verifyAddressBook(addressBook)`
+- Verification function to ensure that an `addressBook` object is formatted properly for storage and use
+
+> *Parameters:*
+> - `addressBook` `string` Stringified JSON Object representing the addressbook to be verified.
+> 
+> *Returns:*
+> - `decodedAddressBook` JSON Object representing the addressbook that passes the `verifyAddressBook` check
+> - OR `addressBook` If no password was specified assume the rawAddressBook is not an encrypted object, so return the addressBook reference within it
 
 
 ## Contributing
