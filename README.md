@@ -47,7 +47,7 @@ The `verifyAddressBook()` function below is used to verify any data trying to pa
 
 ## The Smart Contract: swarmHashMapper
 
-The smart contract we're interacting with is very simple. If you to see the Solidity/Vyper files please [check out this repo for more information](https://github.com/syuan100/swarmhashmapper).
+The smart contract we're interacting with is very simple. If you want to see the Solidity/Vyper files please [check out this repo for more information](https://github.com/syuan100/swarmhashmapper).
 
 ## Public Methods
 #### `ethAddressBook.setNetwork(networkId)`
