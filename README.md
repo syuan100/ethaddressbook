@@ -30,11 +30,11 @@ All `addressBook` objects must follow this structure:
 - The `Array` must contain a series of objects with a `label` key-value pair and an `address` key-value pair
 - The address must be a properly formatted Ethereum address
 
-TODO:
+#### TODO:
 - [ ] Max # of addresses
 - [ ] Max label length
 
-The `verifyAddressBook()` function below is used to verify any data trying to pass ass an address book.
+The `verifyAddressBook()` function below is used to verify any data trying to pass as an address book.
 
 ## Public Methods
 #### `ethAddressBook.setNetwork(networkId)`
@@ -113,7 +113,6 @@ The `verifyAddressBook()` function below is used to verify any data trying to pa
 > - `decodedAddressBook` JSON Object representing the addressbook that passes the `verifyAddressBook` check
 > - OR `addressBook` If no password was specified assume the rawAddressBook is not an encrypted object, so return the addressBook reference within it
 
-
 #### `verifyAddressBook(addressBook)`
 - Verification function to ensure that an `addressBook` object is formatted properly for storage and use
 
@@ -123,7 +122,6 @@ The `verifyAddressBook()` function below is used to verify any data trying to pa
 > *Returns:*
 > - `decodedAddressBook` JSON Object representing the addressbook that passes the `verifyAddressBook` check
 > - OR `addressBook` If no password was specified assume the rawAddressBook is not an encrypted object, so return the addressBook reference within it
-
 
 ## Contributing
 Thank you for contribting to the project! Please make changes on your own fork of this repo and make a pull request when you wish to merge your changes.
