@@ -1,6 +1,15 @@
 # ethaddressbook
 Personal reference for commonly used addresses encrypted and stored on decentralized solutions (swarm, ipfs... soon) and accessed using web3.js
 
+## Why?
+I got wary of storing my commonly used addresses on a Google docs. I wanted something I could access universally, yet was stored in a decentralized manner, and eventually be the basis for to providing better functionality (click + copy, form fills, etc)
+
+## How does it work?
+1. Addresses and their labels are stored on Swarm (or IPFS in the future) and optionally encrypted
+2. The Swarm hash of the file stored is passed to a smart contract and mapped to the current users address
+3. Retrieving the book calls the smart contract to grab the hash
+4. The hash is used to retrieve the Swarm file and then decrypted if necessary
+
 #### :warning: Warning: Work In Progress
 This is largely a project born out of personal curiosity and may or may not be maintained. There are no guarantees that the data that you store on the blockchain will persist. Currently, the only contracts deployed are on the Ropsten and Rinkeby testnets. Please utilize this project with caution.
 
