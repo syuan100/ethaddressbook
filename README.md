@@ -6,7 +6,7 @@ I got wary of storing my commonly used addresses on a Google docs. I wanted some
 
 ## How does it work?
 1. Addresses and their labels are stored on Swarm (or IPFS in the future) and optionally encrypted
-2. The Swarm hash of the file stored is passed to a smart contract and mapped to the current users address
+2. The Swarm hash of the file stored is passed to a [smart contract](https://github.com/syuan100/swarmhashmapper) and mapped to the current users address
 3. Retrieving the book calls the smart contract to grab the hash
 4. The hash is used to retrieve the Swarm file and then decrypted if necessary
 
@@ -44,6 +44,10 @@ All `addressBook` objects must follow this structure:
 - [ ] Max label length
 
 The `verifyAddressBook()` function below is used to verify any data trying to pass as an address book.
+
+## The Smart Contract: swarmHashMapper
+
+The smart contract we're interacting with is very simple. If you to see the Solidity/Vyper files please [check out this repo for more information](https://github.com/syuan100/swarmhashmapper).
 
 ## Public Methods
 #### `ethAddressBook.setNetwork(networkId)`
