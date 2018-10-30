@@ -24,8 +24,6 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 > *Returns:*
 > - None
 
-***
-
 #### `ethAddressBook.getBook(swarmHash, password)`
 - Retrieves the stored `addressBook` object from Swarm and optionally decrypts it if it is encrypted.
 
@@ -36,8 +34,6 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 > *Returns:*
 > - `decryptAddressBook()` Returns function call
 > - OR `addressBook` `JSON` Returns an Object
-
-***
 
 #### `ethAddressBook.storeBook(address, addressBook, password)`
 - Encrypts and stores the `addressBook` object in Swarm. (`addressBook` must match parameters to pass the `verifyAddressBook` check).
@@ -50,8 +46,6 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 > *Returns:*
 > - `storeHash()` Returns a function call
 
-***
-
 #### `ethAddressBook.getHash(address)`
 - Retrieves the Swarm hash related to the ethereum address passed into the function
 
@@ -61,8 +55,6 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 > *Returns:*
 > - `Promise` `reject(error)` Returns an error statement
 > - OR `Promise` `resolve(hashString)` Returns a string representation of the 64-byte Swarm file hash
-
-***
 
 ## Private Methods (Reference only)
 
@@ -78,8 +70,6 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 > - `Promise` `reject(error)` Returns an error statement
 > - OR `Promise` `resolve(result)` Returns a success statement
 
-***
-
 #### `encryptAddressBook(addressBook, password)`
 - Helper function to encrypt an `addressBook` object using the WebCrypto API
 
@@ -87,8 +77,6 @@ Include `ethaddressbook.js` or `ethaddressbook.min.js` in a tag at the top of yo
 > 
 > *Returns:*
 > 
-
-***
 
 
 ## Contributing
