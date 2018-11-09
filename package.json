@@ -4,14 +4,14 @@
   "description": "Personal reference for commonly used addresses encrypted and stored on decentralized solutions (swarm, ipfs) and accessed using web3.js",
   "main": "dist/lib.ethaddressbook-cjs.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/syuan100/ethaddressbook"
+    "type": "git",
+    "url": "https://github.com/syuan100/ethaddressbook"
   },
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "rollup": "rollup -c && cp dist/ethaddressbook.min.js example/static/"
   },
   "author": "syuan100",
@@ -20,5 +20,8 @@
     "jest": "^23.6.0",
     "rollup": "^0.66.6",
     "rollup-plugin-terser": "^3.0.0"
+  },
+  "dependencies": {
+    "web3": "^1.0.0-beta.36"
   }
 }
