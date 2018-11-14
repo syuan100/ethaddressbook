@@ -17,6 +17,7 @@
   "author": "syuan100",
   "license": "MIT",
   "devDependencies": {
+    "gulp": "^4.0.0",
     "jest": "^23.6.0",
     "rollup": "^0.66.6",
     "rollup-plugin-terser": "^3.0.0"
