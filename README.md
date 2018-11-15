@@ -140,13 +140,13 @@ The smart contract we're interacting with is very simple. If you want to see the
 Thank you for contribting to the project! Please make changes on your own fork of this repo and make a pull request when you wish to merge your changes.
 
 ### ethaddressbook.js
-We're using [Rollup.js](https://rollupjs.org) to build our files and minify them. If you are making changes to the library please only make changes to files in the `src` folder.
+We're using [Gulp](https://gulpjs.com/) and [Rollup.js](https://rollupjs.org) to build our files and minify them. If you are making changes to the library please only make changes to files in the `src` folder.
 
 First, make sure you have [node and npm installed](https://nodejs.org/en/download/). Then install the dependencies:
 <pre>npm install</pre>
 
-Then run a the rollup command:
-<pre>npm run rollup</pre>
+Then run a the build command:
+<pre>npm run build</pre>
 
 You should see a success message saying that files were created in the `dist` folder. If that's looking good then you're all setup!
 
