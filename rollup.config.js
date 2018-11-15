@@ -1,7 +1,7 @@
 import { terser } from "rollup-plugin-terser"
 
 export default [{
-  input: 'src/ethaddressbook.js',
+  input: 'src/ethaddressbook.cjs.js',
   output: [
     {
       file: 'dist/ethaddressbook-cjs.min.js',
@@ -20,7 +20,7 @@ export default [{
   ],
   plugins: [terser()]
 },{
-  input: 'src/ethaddressbook.js',
+  input: 'src/ethaddressbook.cjs.js',
   output: [
     {
       file: 'dist/ethaddressbook-cjs.js',
