@@ -2,3 +2,4 @@
 node_modules
 example/.next
 example/node_modules
+src/ethaddressbook.cjs.js
