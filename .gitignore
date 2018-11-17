@@ -3,3 +3,5 @@ node_modules
 example/.next
 example/node_modules
 src/ethaddressbook.cjs.js
+example-nodejs/auth.json
+example-nodejs/private.key
