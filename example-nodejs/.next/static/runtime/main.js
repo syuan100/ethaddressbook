@@ -5706,7 +5706,7 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
-      (0, _sourceMapSupport.rewriteStacktrace)(error, "/Users/steven.yuan/dev/ethaddressbook/example/.next");
+      (0, _sourceMapSupport.rewriteStacktrace)(error, "/Users/steven.yuan/dev/ethaddressbook/example-nodejs/.next");
       return error;
     }
   };
@@ -18071,7 +18071,7 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/steven.yuan/dev/ethaddressbook/example/node_modules/next/dist/client/next-dev */"./node_modules/next/dist/client/next-dev.js");
+module.exports = __webpack_require__(/*! /Users/steven.yuan/dev/ethaddressbook/example-nodejs/node_modules/next/dist/client/next-dev */"./node_modules/next/dist/client/next-dev.js");
 
 
 /***/ }),
