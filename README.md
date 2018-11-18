@@ -1,5 +1,7 @@
 # ethaddressbook
-Personal reference for commonly used addresses encrypted and stored on decentralized solutions (swarm, ipfs... soon) and accessed using web3.js
+Personal reference for commonly used addresses encrypted and stored on decentralized solutions (swarm, ipfs... soon) and accessed using web3.js (future: ethers.js)
+
+- [ ] Add ethers.js support
 
 ## Why?
 I got wary of storing my commonly used addresses on a Google docs. I wanted something I could access universally, yet was stored in a decentralized manner, and eventually be the basis for to providing better functionality (click + copy, form fills, etc)
