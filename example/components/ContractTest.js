@@ -2,6 +2,12 @@ export default () => (
   <div>
     Contract Test Code<br /><br />
 
+    <div class="import-console">
+      IMPORT WALLET<br />
+      <input type="file" class="input-wallet"></input><br />
+      <input type="submit" class="input-wallet-submit"></input><br /><br />
+    </div>
+
     Current Address: <div id="current-address"></div><br />
     Current Hash for Address: <div id="hash-for-address"></div><br /><br />
 
