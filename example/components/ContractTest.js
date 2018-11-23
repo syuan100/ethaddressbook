@@ -2,10 +2,10 @@ export default () => (
   <div>
     Contract Test Code<br /><br />
 
-    <div class="import-console">
+    <div className="import-console">
       IMPORT WALLET<br />
-      <input type="file" class="input-wallet"></input><br />
-      <input type="submit" class="input-wallet-submit"></input><br /><br />
+      <input type="file" className="input-wallet"></input><br />
+      <input type="submit" className="input-wallet-submit"></input><br /><br />
     </div>
 
     Current Address: <div id="current-address"></div><br />
