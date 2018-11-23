@@ -59,6 +59,36 @@ const PUBLIC_SWARM_URL = "https://swarm-gateways.net/";
 // TODO: Provide error response message if Swarm gateway cannot be reached
 var CURRENT_GATEWAY_URL = PUBLIC_SWARM_URL;
 
+function init() {
+  eab.setWeb3API();
+}
+
+eab.setWeb3API = function(provider) {
+  if (provider) {
+    switch(provider) {
+      case "web3":
+        if (typeof web3 === "object") ; else {
+          console.log("Unable to set provider because 'web3' is not available.");
+        }
+        break;
+      case "ethers":
+        if (typeof ethers === "object") ; else {
+          console.log("Unable to set provider because 'ethers' is not available.");
+        }
+        break;
+      default:
+
+    }
+  } else {
+    if (typeof web3 === "object") {
+      console.log("Web3 provider set to 'web3'");
+    }
+    if (typeof ethers === "object") {
+      console.log("Web3 provider set to 'ethers'");
+    }
+  }
+};
+
 eab.setNetwork = async function(networkId) {
   if (networkId === "3") {
     CURRENT_SWARM_HASH_ADDRESS = swarmHashAddressRopstenVYPER;
@@ -194,5 +224,7 @@ function verifyAddressBook(addressBook) {
     return true
   }
 }
+
+init();
 
 module.exports = eab;

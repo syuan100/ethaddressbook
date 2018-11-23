@@ -15,6 +15,7 @@ const swarmHashAddressRinkebySOLIDITY = "0x95275693aF9E7b20F8Dbb7466Bb1652510d93
 
 var CURRENT_SWARM_HASH_INTERFACE = swarmHashJsonInterfaceVYPER
 var CURRENT_SWARM_HASH_ADDRESS
+var CURRENT_WEB3_API
 var swarmHashContractInstance
 
 // TODO:
@@ -24,6 +25,42 @@ const PUBLIC_SWARM_URL = "https://swarm-gateways.net/"
 
 // TODO: Provide error response message if Swarm gateway cannot be reached
 var CURRENT_GATEWAY_URL = PUBLIC_SWARM_URL
+
+function init() {
+  eab.setWeb3API()
+}
+
+eab.setWeb3API = function(provider) {
+  if (provider) {
+    switch(provider) {
+      case "web3":
+        if (typeof web3 === "object") {
+          CURRENT_WEB3_API = "web3"
+        } else {
+          console.log("Unable to set provider because 'web3' is not available.")
+        }
+        break;
+      case "ethers":
+        if (typeof ethers === "object") {
+          CURRENT_WEB3_API = "ethers"
+        } else {
+          console.log("Unable to set provider because 'ethers' is not available.")
+        }
+        break;
+      default:
+        CURRENT_WEB3_API = null
+    }
+  } else {
+    if (typeof web3 === "object") {
+      CURRENT_WEB3_API = "web3"
+      console.log("Web3 provider set to 'web3'")
+    }
+    if (typeof ethers === "object") {
+      CURRENT_WEB3_API = "ethers"
+      console.log("Web3 provider set to 'ethers'")
+    }
+  }
+}
 
 eab.setNetwork = async function(networkId) {
   if (networkId === "3") {
@@ -160,5 +197,7 @@ function verifyAddressBook(addressBook) {
     return true
   }
 }
+
+init()
 
 export default eab
