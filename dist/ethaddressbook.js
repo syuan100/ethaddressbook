@@ -39,6 +39,35 @@ var ethAddressBook = (function () {
     return buf;
   };
 
+  // web3 API implementations:
+  // web3.js
+  // ethers.js
+
+  const contract = function(api, abi, address, network){
+    var contractInstance;
+
+    switch (api) {
+      case "web3":
+        contractInstance = web3.eth.contract(abi).at(address);
+        break
+      case "ethers":
+        switch (network){
+          case "3":
+            contractInstance = new ethers.Contract(address, abi, ethers.getDefaultProvider('ropsten'));
+            break
+          case "4":
+            contractInstance = new ethers.Contract(address, abi, ethers.getDefaultProvider('rinkeby'));
+            break
+          default:
+            contractInstance = new ethers.Contract(address, abi, ethers.getDefaultProvider());
+            break
+        }
+        break
+    }
+
+    return contractInstance
+  };
+
   const eab = {};
 
   // TODO:
@@ -51,6 +80,7 @@ var ethAddressBook = (function () {
 
   var CURRENT_SWARM_HASH_INTERFACE = swarmHashJsonInterfaceVYPER;
   var CURRENT_SWARM_HASH_ADDRESS;
+  var CURRENT_WEB3_API;
   var swarmHashContractInstance;
   const PUBLIC_SWARM_URL = "https://swarm-gateways.net/";
 
@@ -61,28 +91,35 @@ var ethAddressBook = (function () {
     eab.setWeb3API();
   }
 
-  eab.setWeb3API = function(provider) {
-    if (provider) {
-      switch(provider) {
+  eab.setWeb3API = function(api) {
+    if (api) {
+      switch(api) {
         case "web3":
-          if (typeof web3 === "object") ; else {
-            console.log("Unable to set provider because 'web3' is not available.");
+          if (typeof web3 === "object") {
+            CURRENT_WEB3_API = "web3";
+          } else {
+            console.log("Unable to set api because 'web3' is not available.");
           }
           break;
         case "ethers":
-          if (typeof ethers === "object") ; else {
-            console.log("Unable to set provider because 'ethers' is not available.");
+          if (typeof ethers === "object") {
+            CURRENT_WEB3_API = "ethers";
+          } else {
+            console.log("Unable to set api because 'ethers' is not available.");
           }
           break;
         default:
-
+          CURRENT_WEB3_API = null;
       }
     } else {
       if (typeof web3 === "object") {
-        console.log("Web3 provider set to 'web3'");
-      }
-      if (typeof ethers === "object") {
-        console.log("Web3 provider set to 'ethers'");
+        CURRENT_WEB3_API = "web3";
+        console.log("Web3 api set to 'web3.js'");
+      } else if (typeof ethers === "object") {
+        CURRENT_WEB3_API = "ethers";
+        console.log("Web3 api set to 'ethers.js'");
+      } else {
+        console.log("No web3 api found. Please install metamask, web3.js, or ethers.js");
       }
     }
   };
@@ -93,7 +130,8 @@ var ethAddressBook = (function () {
     } else if (networkId === "4") {
       CURRENT_SWARM_HASH_ADDRESS = swarmHashAddressRinkebySOLIDITY;
     }
-    swarmHashContractInstance = web3.eth.contract(CURRENT_SWARM_HASH_INTERFACE).at(CURRENT_SWARM_HASH_ADDRESS);
+    swarmHashContractInstance = contract(CURRENT_WEB3_API, CURRENT_SWARM_HASH_INTERFACE, CURRENT_SWARM_HASH_ADDRESS, networkId);
+    console.log(swarmHashContractInstance);
   };
 
   eab.getBook = function(swarmHash, password) {

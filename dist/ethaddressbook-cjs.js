@@ -38,8 +38,37 @@ const str2ab = function(str) {
   return buf;
 };
 
+// web3 API implementations:
+// web3.js
+// ethers.js
+
+const contract = function(api, abi, address, network){
+  var contractInstance;
+
+  switch (api) {
+    case "web3":
+      contractInstance = web3.eth.contract(abi).at(address);
+      break
+    case "ethers":
+      switch (network){
+        case "3":
+          contractInstance = new ethers.Contract(address, abi, ethers.getDefaultProvider('ropsten'));
+          break
+        case "4":
+          contractInstance = new ethers.Contract(address, abi, ethers.getDefaultProvider('rinkeby'));
+          break
+        default:
+          contractInstance = new ethers.Contract(address, abi, ethers.getDefaultProvider());
+          break
+      }
+      break
+  }
+
+  return contractInstance
+};
+
 const Web3 = require('web3');
-const web3 = new Web3('ws://localhost:8546');
+const web3$1 = new Web3('ws://localhost:8546');
 
 const eab = {};
 
@@ -53,6 +82,7 @@ const swarmHashAddressRinkebySOLIDITY = "0x95275693aF9E7b20F8Dbb7466Bb1652510d93
 
 var CURRENT_SWARM_HASH_INTERFACE = swarmHashJsonInterfaceVYPER;
 var CURRENT_SWARM_HASH_ADDRESS;
+var CURRENT_WEB3_API;
 var swarmHashContractInstance;
 const PUBLIC_SWARM_URL = "https://swarm-gateways.net/";
 
@@ -63,28 +93,35 @@ function init() {
   eab.setWeb3API();
 }
 
-eab.setWeb3API = function(provider) {
-  if (provider) {
-    switch(provider) {
+eab.setWeb3API = function(api) {
+  if (api) {
+    switch(api) {
       case "web3":
-        if (typeof web3 === "object") ; else {
-          console.log("Unable to set provider because 'web3' is not available.");
+        if (typeof web3$1 === "object") {
+          CURRENT_WEB3_API = "web3";
+        } else {
+          console.log("Unable to set api because 'web3' is not available.");
         }
         break;
       case "ethers":
-        if (typeof ethers === "object") ; else {
-          console.log("Unable to set provider because 'ethers' is not available.");
+        if (typeof ethers === "object") {
+          CURRENT_WEB3_API = "ethers";
+        } else {
+          console.log("Unable to set api because 'ethers' is not available.");
         }
         break;
       default:
-
+        CURRENT_WEB3_API = null;
     }
   } else {
-    if (typeof web3 === "object") {
-      console.log("Web3 provider set to 'web3'");
-    }
-    if (typeof ethers === "object") {
-      console.log("Web3 provider set to 'ethers'");
+    if (typeof web3$1 === "object") {
+      CURRENT_WEB3_API = "web3";
+      console.log("Web3 api set to 'web3.js'");
+    } else if (typeof ethers === "object") {
+      CURRENT_WEB3_API = "ethers";
+      console.log("Web3 api set to 'ethers.js'");
+    } else {
+      console.log("No web3 api found. Please install metamask, web3.js, or ethers.js");
     }
   }
 };
@@ -95,7 +132,8 @@ eab.setNetwork = async function(networkId) {
   } else if (networkId === "4") {
     CURRENT_SWARM_HASH_ADDRESS = swarmHashAddressRinkebySOLIDITY;
   }
-  swarmHashContractInstance = web3.eth.contract(CURRENT_SWARM_HASH_INTERFACE).at(CURRENT_SWARM_HASH_ADDRESS);
+  swarmHashContractInstance = contract(CURRENT_WEB3_API, CURRENT_SWARM_HASH_INTERFACE, CURRENT_SWARM_HASH_ADDRESS, networkId);
+  console.log(swarmHashContractInstance);
 };
 
 eab.getBook = function(swarmHash, password) {
@@ -149,7 +187,7 @@ eab.getHash = async function(address) {
       return reject(error)
     }
     if (result){
-      let hashString = web3.toAscii(result[0]) + web3.toAscii(result[1]);
+      let hashString = web3$1.toAscii(result[0]) + web3$1.toAscii(result[1]);
       return resolve(hashString)
     }
   }))
@@ -216,7 +254,7 @@ function verifyAddressBook(addressBook) {
     console.error("Each address entry must be an object that contains a key named 'label' corresponding to a string.");
     return false
   } else if (!parsedAddressBook.addresses.every(function(entry) {
-    return web3.isAddress(entry.address)
+    return web3$1.isAddress(entry.address)
   })) {
     console.error("Each address entry must be an object that contains a key named 'address' corresponding to a valid eth address.");
     return false

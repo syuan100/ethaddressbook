@@ -1,6 +1,7 @@
 const Web3 = require('web3')
 const web3 = new Web3('ws://localhost:8546')
 import * as utils from './utils.js'
+import * as w3api from './web3api.js'
 
 const eab = {}
 
@@ -30,21 +31,21 @@ function init() {
   eab.setWeb3API()
 }
 
-eab.setWeb3API = function(provider) {
-  if (provider) {
-    switch(provider) {
+eab.setWeb3API = function(api) {
+  if (api) {
+    switch(api) {
       case "web3":
         if (typeof web3 === "object") {
           CURRENT_WEB3_API = "web3"
         } else {
-          console.log("Unable to set provider because 'web3' is not available.")
+          console.log("Unable to set api because 'web3' is not available.")
         }
         break;
       case "ethers":
         if (typeof ethers === "object") {
           CURRENT_WEB3_API = "ethers"
         } else {
-          console.log("Unable to set provider because 'ethers' is not available.")
+          console.log("Unable to set api because 'ethers' is not available.")
         }
         break;
       default:
@@ -53,11 +54,12 @@ eab.setWeb3API = function(provider) {
   } else {
     if (typeof web3 === "object") {
       CURRENT_WEB3_API = "web3"
-      console.log("Web3 provider set to 'web3'")
-    }
-    if (typeof ethers === "object") {
+      console.log("Web3 api set to 'web3.js'")
+    } else if (typeof ethers === "object") {
       CURRENT_WEB3_API = "ethers"
-      console.log("Web3 provider set to 'ethers'")
+      console.log("Web3 api set to 'ethers.js'")
+    } else {
+      console.log("No web3 api found. Please install metamask, web3.js, or ethers.js")
     }
   }
 }
@@ -68,7 +70,8 @@ eab.setNetwork = async function(networkId) {
   } else if (networkId === "4") {
     CURRENT_SWARM_HASH_ADDRESS = swarmHashAddressRinkebySOLIDITY
   }
-  swarmHashContractInstance = web3.eth.contract(CURRENT_SWARM_HASH_INTERFACE).at(CURRENT_SWARM_HASH_ADDRESS)
+  swarmHashContractInstance = w3api.contract(CURRENT_WEB3_API, CURRENT_SWARM_HASH_INTERFACE, CURRENT_SWARM_HASH_ADDRESS, networkId)
+  console.log(swarmHashContractInstance)
 }
 
 eab.getBook = function(swarmHash, password) {
