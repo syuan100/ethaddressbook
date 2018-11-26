@@ -6,6 +6,7 @@ const eab = {}
 // TODO:
 //  - Add support for IPFS
 //  - Deploy swarm contract to other testnets
+//  - Add support for ethers.js (in progress)
 const swarmHashJsonInterfaceVYPER = [{"name": "store_swarm_hash", "outputs": [], "inputs": [{"type": "bytes32", "name": "inputPt1"}, {"type": "bytes32", "name": "inputPt2"}], "constant": false, "payable": false, "type": "function", "gas": 70682}, {"name": "get_swarm_hash", "outputs": [{"type": "bytes32[2]", "name": "out"}], "inputs": [{"type": "address", "name": "_address"}], "constant": true, "payable": false, "type": "function", "gas": 1294}, {"name": "swarmHash__pt1", "outputs": [{"type": "bytes32", "name": "out"}], "inputs": [{"type": "address", "name": "arg0"}], "constant": true, "payable": false, "type": "function", "gas": 787}, {"name": "swarmHash__pt2", "outputs": [{"type": "bytes32", "name": "out"}], "inputs": [{"type": "address", "name": "arg0"}], "constant": true, "payable": false, "type": "function", "gas": 823}]
 const swarmHashJsonInterfaceSOLIDITY = [{"constant": false, "inputs": [{"name": "inputPt1", "type": "bytes32"},{"name": "inputPt2", "type": "bytes32"}], "name": "store_swarm_hash", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function"}, {"constant": true, "inputs": [{"name": "_address", "type": "address"}], "name": "get_swarm_hash", "outputs": [{"name": "","type": "bytes32[2]"}], "payable": false, "stateMutability": "view", "type": "function"}]
 
@@ -65,11 +66,12 @@ eab.setWeb3API = function(api) {
 eab.setNetwork = async function(networkId) {
   if (networkId === "3") {
     CURRENT_SWARM_HASH_ADDRESS = swarmHashAddressRopstenVYPER
+    console.log("Network set to Ropsten.")
   } else if (networkId === "4") {
     CURRENT_SWARM_HASH_ADDRESS = swarmHashAddressRinkebySOLIDITY
+    console.log("Network set to Rinkeby.")
   }
   swarmHashContractInstance = w3api.contract(CURRENT_WEB3_API, CURRENT_SWARM_HASH_INTERFACE, CURRENT_SWARM_HASH_ADDRESS, networkId)
-  console.log(swarmHashContractInstance)
 }
 
 eab.getBook = function(swarmHash, password) {
