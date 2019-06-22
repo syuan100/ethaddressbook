@@ -1,39 +1,55 @@
-window.addEventListener('load', function() {
+window.addEventListener('load', async() => {
 
-  // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-  if (typeof web3 !== 'undefined') {
+  /*
+   * Set latest web3 provider via MetaMask
+   * https://medium.com/metamask/https-medium-com-metamask-breaking-change-injecting-web3-7722797916a8 
+   */
 
-    // Use the browser's ethereum provider
-    var provider = web3.currentProvider
-    console.log("Connected to web3 provider.")
-    web3.version.getNetwork((err, netId) => {
-      switch (netId) {
-        case "1":
-          console.log('mainnet')
-          break
-        case "2":
-          console.log('On the deprecated Morden test network.')
-          break
-        case "3":
-          console.log('On the ropsten test network.')
-          ethAddressBook.setNetwork(netId)
-          break
-        case "4":
-          console.log('On the Rinkeby test network.')
-          ethAddressBook.setNetwork(netId)
-          break
-        case "42":
-          console.log('On the Kovan test network.')
-          break
-        default:
-          console.log('On an unknown network.')
+  if (window.ethereum) {
+      window.web3 = new Web3(ethereum);
+      try {
+          // Request account access if needed
+          await ethereum.enable();
+      } catch (error) {
+          // User denied account access...
       }
-      init()
-    })
-
-  } else {
-    console.log('No web3? You should consider trying MetaMask!')
   }
+
+  else if (window.web3) {
+      window.web3 = new Web3(web3.currentProvider);
+      // Acccounts always exposed
+  }
+  // Non-dapp browsers...
+  else {
+      console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+  }
+  
+  console.log("Connected to web3 provider.")
+
+  web3.version.getNetwork((err, netId) => {
+    switch (netId) {
+      case "1":
+        console.log('mainnet')
+        break
+      case "2":
+        console.log('On the deprecated Morden test network.')
+        break
+      case "3":
+        console.log('On the ropsten test network.')
+        ethAddressBook.setNetwork(netId)
+        break
+      case "4":
+        console.log('On the Rinkeby test network.')
+        ethAddressBook.setNetwork(netId)
+        break
+      case "42":
+        console.log('On the Kovan test network.')
+        break
+      default:
+        console.log('On an unknown network.')
+    }
+    init()
+  })
 
 })
 
